@@ -3,7 +3,7 @@ module HippoActivityLog
     def build_event(args)
       Event.create({
         object: args[:object],
-        object_id: args[:object_id],
+        object_id: args[:object][:id],
         object_type: args[:resource],
         author: args[:author],
         author_id: args[:author][:id],
@@ -17,6 +17,12 @@ module HippoActivityLog
         name: args[:event_class],
         raw_data: args
       })
+    end
+
+    def queried_events(filter_param, sort_param, page_param)
+      events = Event.ransack(filter_param)
+      events.sorts = sort_param == nil ? "id asc" : sort_param
+      events.result.paginate(page: page_param, per_page: 20)
     end
   end
 end

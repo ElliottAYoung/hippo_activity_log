@@ -8,7 +8,7 @@ module HippoActivityLog
 
     def index
       # Ransack from given args
-      render json: Event.all
+      render json: queried_events(params[:filter], params[:sort], params[:page]), each_serializer: EventsSerializer
     end
 
     def create

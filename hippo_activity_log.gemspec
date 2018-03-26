@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = HippoActivityLog::VERSION
   s.authors     = ["ElliottAYoung"]
   s.email       = ["elliott.a.young@gmail.com"]
-  s.homepage    = ""
-  s.summary     = ""
-  s.description = ""
+  s.homepage    = "https://github.com/ElliottAYoung/hippo_activity_log.git"
+  s.summary     = "The short-term storage POC for events from the Hippo Webhook"
+  s.description = "The short-term storage POC for events from the Hippo Webhook"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

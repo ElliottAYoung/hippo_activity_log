@@ -1,7 +1,7 @@
 module HippoActivityLog
   class EventsController < ApplicationController
     protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-    before_action :authenticate_request!, only: [:create]
+    before_action :authenticate_request!
     respond_to :json
 
     include HippoActivityLog::EventHelper
@@ -19,9 +19,9 @@ module HippoActivityLog
     private
 
     def authenticate_request!
-      # unless params[:client_id] == ENV['CLIENT_ID'] && params[:client_secret] == ENV['CLIENT_SECRET'] do
-      #   head :unauthorized
-      # end
+      if (params[:client_id] != ENV['CLIENT_ID']) || (params[:client_secret] != ENV['CLIENT_SECRET'])
+        head :unauthorized
+      end
     end
   end
 end

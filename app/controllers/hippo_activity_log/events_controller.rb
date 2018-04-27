@@ -19,7 +19,7 @@ module HippoActivityLog
     private
 
     def authenticate_request!
-      if (params[:client_id] != ENV['CLIENT_ID']) || (params[:client_secret] != ENV['CLIENT_SECRET'])
+      if (params[:client_id] != ENV['EVENTS_CLIENT_ID']) || (params[:client_secret] != ENV['EVENTS_CLIENT_SECRET'])
         head :unauthorized
       end
     end

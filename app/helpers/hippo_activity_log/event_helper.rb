@@ -3,10 +3,10 @@ module HippoActivityLog
     def build_event(args)
       Event.create({
         object: args[:object],
-        object_id: args[:object][:id],
+        object_id: args[:object].try('fetch', :id),
         object_type: args[:resource],
         author: args[:author],
-        author_id: args[:author][:id],
+        author_id: args[:author].try('fetch', :id),
         author_type: args[:author_type],
         action: args[:event_type],
         timestamp: args[:timestamp],

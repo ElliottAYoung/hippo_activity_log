@@ -13,6 +13,8 @@ module HippoActivityLog
         partner_id: args[:partner_id],
         user: args[:user],
         user_id: args[:user_id],
+        loan_application: args[:loan_application],
+        loan_application_id: args[:loan_application_id],
         params: args[:event_args],
         name: args[:event_class],
         raw_data: args

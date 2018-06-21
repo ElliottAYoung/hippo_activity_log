@@ -12,8 +12,13 @@ module HippoActivityLog
     end
 
     def create
-      build_event(params)
-      render json: 'ok', status: :ok
+      begin
+        build_event(params)
+        render json: 'ok', status: :ok
+      rescue => e
+        Raven.capture_message("#{e}. Context: #{params['event_class']} #{params['resource']}-ID #{params['object'].try(:fetch, 'id')}") if Raven
+        render json: 'error', status: :bad_request
+      end
     end
 
     private
